@@ -1,6 +1,7 @@
 package edu.hyf.car_rental.controller;
 
 import edu.hyf.car_rental.service.CarService;
+import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -26,8 +27,8 @@ public class CarController {
     /* POST */
     // ADD NEW CAR => add in car
     @PostMapping("add")
-    public ResponseEntity<?> addCar(Car car){
-        return service.addCar(car);
+    public ResponseEntity<?> addCar( @Valid @RequestBody CarRequestDTO carDTO){
+        return service.addCar(carDTO);
     }
     /* DELETE */
     @DeleteMapping("delete/{carId}")

@@ -29,7 +29,7 @@ public class RentalController {
     /* POST */
     @PostMapping("add")
     public ResponseEntity<?> addRental(
-            @Valid @RequestBody RentalCreateDTO dto;
+            @Valid @RequestBody RentalRequestDTO dto;
     ){
         return service.addRental();
     }
