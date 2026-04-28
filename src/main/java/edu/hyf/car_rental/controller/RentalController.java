@@ -1,5 +1,6 @@
 package edu.hyf.car_rental.controller;
 
+import edu.hyf.car_rental.model.Rental;
 import edu.hyf.car_rental.service.RentalService;
 import jakarta.validation.Valid;
 import jakarta.websocket.server.PathParam;
