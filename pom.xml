@@ -53,23 +53,6 @@
             <artifactId>spring-boot-starter-data-jpa</artifactId>
         </dependency>
 
-        <!-- Spring Web: HTTP client, RestTemplate, WebClient, @RequestBody, @ResponseBody -->
-        <!-- ⚠️ already included by spring-boot-starter-webmvc, may cause version conflict -->
-        <!-- <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-web</artifactId>
-            <version>${spring.web.version}</version>
-            <scope>compile</scope>
-        </dependency> -->
-
-        <!-- Hibernate ORM: JPA implementation, entity mapping, SQL generation -->
-        <!-- ⚠️ already included by spring-boot-starter-data-jpa, may cause version conflict -->
-        <!-- <dependency>
-            <groupId>org.hibernate.orm</groupId>
-            <artifactId>hibernate-core</artifactId>
-            <version>${hibernate.version}</version>
-        </dependency> -->
-
         <!-- PostgreSQL JDBC driver to connect to the database -->
         <dependency>
             <groupId>org.postgresql</groupId>
@@ -84,15 +67,6 @@
             <scope>runtime</scope>  <!-- only at runtime -->
             <optional>true</optional> <!-- not included in final jar -->
         </dependency>
-
-        <!-- SLF4J: simple logging implementation -->
-        <!-- ⚠️ test scope only — Spring Boot already includes Logback for main logging -->
-        <!-- <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-simple</artifactId>
-            <version>${slf4j.version}</version>
-            <scope>test</scope>
-        </dependency> -->
 
         <!-- Swagger UI + OpenAPI 3 documentation at /swagger-ui.html -->
         <dependency>

@@ -1,7 +1,9 @@
 package edu.hyf.car_rental.dto;
 
+import edu.hyf.car_rental.model.CarStatus;
 import jakarta.persistence.UniqueConstraint;
 import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
@@ -9,21 +11,21 @@ import lombok.Data;
 
 public class CarRequestDTO {
 
-    @NotNull(message= "Brand is required.")
+    @NotBlank(message= "Brand is required.")
     private String brand;
 
-    @NotNull(message= "Plate is required.")
+    @NotBlank(message= "Plate is required.")
     private String plate;
 
     @NotNull
-    @Min(value=2023, message = "Year must be >= 2023.") // @Catherine: add this to test global handle violations.
+    @Min(value=2023, message = "Year must be >= 2023.")
     private int year;
 
     private String color;
     private String model;
 
-    @NotNull(message= "Rental is required.")
-    private Boolean isRented;
+    @NotNull(message= "Status is required.")
+    private CarStatus status;
 
     private Long rentalId;
 

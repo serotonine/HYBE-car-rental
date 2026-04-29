@@ -41,6 +41,7 @@ public class CarController {
     public ResponseEntity<?> addCar(@Valid @RequestBody CarRequestDTO carDTO){
         return service.addCar(carDTO);
     }
+
     /* DELETE */
     @DeleteMapping("delete/{carId}")
     public ResponseEntity<?> deleteCar(@PathVariable Long carId){
