@@ -6,12 +6,14 @@ import edu.hyf.car_rental.model.Car;
 import edu.hyf.car_rental.service.CarService;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
 @RequestMapping("car")
+@Validated
 public class CarController {
     private final CarService service;
 
@@ -36,7 +38,7 @@ public class CarController {
     /* POST */
     // ADD NEW CAR => add in car
     @PostMapping("add")
-    public CarResponseDTO addCar(@Valid @RequestBody CarRequestDTO carDTO){
+    public ResponseEntity<?> addCar(@Valid @RequestBody CarRequestDTO carDTO){
         return service.addCar(carDTO);
     }
     /* DELETE */

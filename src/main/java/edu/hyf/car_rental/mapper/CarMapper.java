@@ -9,11 +9,10 @@ import org.mapstruct.MappingConstants;
 
 
 @Mapper(componentModel = MappingConstants.ComponentModel.SPRING)
-
 public interface CarMapper {
-    @Mapping(source = "rental.id", target = "rentalId")
+    // @Mapping(source = "car.rental.id", target = "rentalId")
     CarResponseDTO toResponseDTO(Car car);
-    @Mapping(target = "id", ignore = true)
+    // @Mapping(target = "id", ignore = true)
     Car toEntity(CarRequestDTO dto);
 
 }
