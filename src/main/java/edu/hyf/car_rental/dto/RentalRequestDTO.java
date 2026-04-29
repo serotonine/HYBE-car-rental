@@ -14,4 +14,6 @@ public class RentalRequestDTO {
     private LocalDate startDate;
     @NotNull
     private LocalDate returnDate;
+    @NotNull
+    private LocalDate exactReturnDate;
 }

@@ -11,4 +11,5 @@ public class RentalResponseDTO {
     private Long rentalId;
     private LocalDate startDate;
     private LocalDate returnDate;
+    private LocalDate exactReturnDate;
 }

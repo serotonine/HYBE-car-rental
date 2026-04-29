@@ -32,6 +32,10 @@ public class Rental {
     @Column(name="return_date", nullable = false)
     private LocalDate returnDate;
 
+    @NotNull
+    @Column(name="exact_return_date", nullable = false)
+    private LocalDate exactReturnDate;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "car_id")
     private Car car;
