@@ -38,7 +38,8 @@ public class Car {
 
     @NotNull
     @Column(nullable = false)
-    private Boolean isRented = false;
+    @Enumerated(EnumType.STRING)
+    private CarStatus status = CarStatus.AVAILABLE;
 
     @OneToMany(mappedBy = "car", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Rental> rentalRecord = new ArrayList<>();
@@ -48,9 +49,8 @@ public class Car {
         rental.setCar(this);
     }
 
-    public void removeLoan(Rental rental) {
+    public void removeRental(Rental rental) {
         rentalRecord.remove(rental);
         rental.setCar(null);
     }
-
 }

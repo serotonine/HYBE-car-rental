@@ -22,7 +22,7 @@ public class CarResponseDTO {
     private String model;
 
     @NotNull
-    private Boolean isRented;
+    private String status;
 
 
 }

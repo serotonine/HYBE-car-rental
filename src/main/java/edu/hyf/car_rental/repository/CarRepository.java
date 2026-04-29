@@ -2,6 +2,7 @@ package edu.hyf.car_rental.repository;
 
 
 import edu.hyf.car_rental.model.Car;
+import edu.hyf.car_rental.model.CarStatus;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -13,5 +14,6 @@ import java.util.Optional;
 public interface CarRepository extends JpaRepository <Car, Long>{
     boolean existsById(Long id);
     Optional<Car>findById(Long id);
-    List<Car> findByIsRented(boolean isRented);
+    List<Car> findByStatus(CarStatus status);
+    //List<Car> findByIsRented(boolean isRented);
 }

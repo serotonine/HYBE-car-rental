@@ -10,6 +10,6 @@ import org.mapstruct.MappingConstants;
 
 public interface RentalMapper {
     RentalResponseDTO toRensponseDTO(Rental rental);
-    @Mapping(target = "id", ignore = true)
+   // @Mapping(target = "id", ignore = true)
     Rental toEntity (RentalResponseDTO dto);
 }
