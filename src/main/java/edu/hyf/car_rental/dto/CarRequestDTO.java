@@ -11,18 +11,19 @@ import lombok.Data;
 
 public class CarRequestDTO {
 
-    @NotBlank(message= "Brand is required.")
+    @NotBlank(message = "Brand is required.")
     private String brand;
 
-    @NotBlank(message= "Plate is required.")
+    @NotBlank(message = "Plate is required.")
     private String plate;
 
     @NotNull
-    @Min(value=2023, message = "Year must be >= 2023.")
+    @Min(value = 2023, message = "Year must be >= 2023.")
     private int year;
 
     private String color;
     private String model;
 
-    @NotNull(message= "Status is required.")
+    @NotNull(message = "Status is required.")
     private CarStatus status;
+}
