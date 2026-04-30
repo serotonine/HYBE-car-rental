@@ -15,5 +15,4 @@ public interface CarRepository extends JpaRepository <Car, Long>{
     boolean existsById(Long id);
     Optional<Car>findById(Long id);
     List<Car> findByStatus(CarStatus status);
-    //List<Car> findByIsRented(boolean isRented);
 }

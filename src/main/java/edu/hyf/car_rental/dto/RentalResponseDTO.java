@@ -1,4 +1,5 @@
 package edu.hyf.car_rental.dto;
+import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
 import java.time.LocalDate;
@@ -12,4 +13,5 @@ public class RentalResponseDTO {
     private LocalDate startDate;
     private LocalDate returnDate;
     private LocalDate exactReturnDate;
+    private Long carId;
 }
