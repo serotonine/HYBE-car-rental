@@ -2,6 +2,7 @@ package edu.hyf.car_rental.controller;
 
 import edu.hyf.car_rental.dto.CarRequestDTO;
 import edu.hyf.car_rental.dto.CarResponseDTO;
+import edu.hyf.car_rental.dto.CarUpdateRequestDTO;
 import edu.hyf.car_rental.model.Car;
 import edu.hyf.car_rental.service.CarService;
 import jakarta.validation.Valid;
@@ -21,18 +22,20 @@ public class CarController {
         this.service = service;
     }
 
-    // GET
+    /* GET */
+    // Get all.
     @GetMapping("")
     public List<CarResponseDTO> findAllCars(){
         return service.findAllCars();
     }
+    // Get by id.
     @GetMapping("/{carId}")
     public CarResponseDTO findCarById(@PathVariable Long carId ){
         return service.findCarById(carId);
     }
 
-    public List<Car> findAllAvailableCars(){
-        return service.findAllAvailableCars();
+    public List<Car> searchCarBy(){
+        return service.searchBy();
     }
 
     /* POST */
@@ -42,11 +45,18 @@ public class CarController {
         return service.addCar(carDTO);
     }
 
-    /* DELETE */
-    @DeleteMapping("delete/{carId}")
-    public ResponseEntity<?> deleteCar(@PathVariable Long carId){
-        return service.deleteCar(carId);
-
+    /* PATCH */
+@PatchMapping("update/{id}")
+    public ResponseEntity<?> updateCar(
+            @PathVariable Long id,
+            @Valid @RequestBody CarUpdateRequestDTO dto
+){
+        return service.updateCar(id, dto);
     }
 
+    /* DELETE */
+    @DeleteMapping("delete/{id}")
+    public ResponseEntity<?> deleteCar(@PathVariable Long id){
+        return service.deleteCar(id);
+    }
 }

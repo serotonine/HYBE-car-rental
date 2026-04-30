@@ -27,6 +27,6 @@ public class CarRequestDTO {
     @NotNull(message= "Status is required.")
     private CarStatus status;
 
-    private Long rentalId;
+    // private Long rentalId;
 
 }
