@@ -1,5 +1,6 @@
 package edu.hyf.car_rental.dto;
 
+import jakarta.validation.constraints.Future;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
@@ -16,4 +17,6 @@ public class RentalRequestDTO {
     private LocalDate returnDate;
     @NotNull
     private LocalDate exactReturnDate;
+    @NotNull
+    private Long carId;
 }

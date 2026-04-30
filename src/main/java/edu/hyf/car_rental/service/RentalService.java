@@ -4,6 +4,7 @@ import edu.hyf.car_rental.dto.RentalRequestDTO;
 import edu.hyf.car_rental.dto.RentalResponseDTO;
 import edu.hyf.car_rental.mapper.RentalMapper;
 import edu.hyf.car_rental.model.Car;
+import edu.hyf.car_rental.model.CarStatus;
 import edu.hyf.car_rental.model.Rental;
 import edu.hyf.car_rental.repository.CarRepository;
 import edu.hyf.car_rental.repository.RentalRepository;
@@ -46,24 +47,21 @@ public class RentalService {
     /* GET OVERDUE RENTALS */
 
     public List<RentalResponseDTO> getOverdueRentals() {
-
-        return rentalRepo.findAll()
-                .stream()
-                .filter(rental ->
-                        rental.getReturnDate().isBefore(LocalDate.now()))
-                .map(mapper::toResponseDTO)
-                .toList();
+            return rentalRepo.findOverdueRentals()
+                    .stream()
+                    .map(mapper::toResponseDTO)
+                    .toList();
     }
 
     /* CREATE RENTAL */
 
     public RentalResponseDTO createRental(RentalRequestDTO dto) {
 
-        Car car = carRepo.findById(dto.getCarId())
+        Car car = carRepo.findById(dto.getRentalId())
                 .orElseThrow(() ->
                         new RuntimeException("Car not found"));
 
-        if (car.getIsRented()) {
+        if (car.getStatus() == CarStatus.RENTED) {
             throw new RuntimeException("Car already rented");
         }
 
@@ -71,7 +69,7 @@ public class RentalService {
 
         rental.setCar(car);
 
-        car.setIsRented(true);
+        car.setStatus(CarStatus.RENTED);
 
         Rental saved = rentalRepo.save(rental);
 
@@ -86,7 +84,7 @@ public class RentalService {
                 .orElseThrow(() ->
                         new RuntimeException("Rental not found"));
 
-        rental.getCar().setIsRented(true);
+        rental.getCar().setStatus(CarStatus.RENTED);
 
         Rental updated = rentalRepo.save(rental);
 
@@ -101,7 +99,7 @@ public class RentalService {
                 .orElseThrow(() ->
                         new RuntimeException("Rental not found"));
 
-        rental.getCar().setIsRented(false);
+        rental.getCar().setStatus(CarStatus.AVAILABLE);
 
         Rental updated = rentalRepo.save(rental);
 
@@ -116,7 +114,7 @@ public class RentalService {
                 .orElseThrow(() ->
                         new RuntimeException("Rental not found"));
 
-        rental.getCar().setIsRented(false);
+        rental.getCar().setStatus(CarStatus.AVAILABLE);
 
         rentalRepo.delete(rental);
 
