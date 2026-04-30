@@ -12,10 +12,5 @@ import org.mapstruct.MappingConstants;
 public interface RentalMapper {
     @Mapping(source = "car.id", target = "carId")
     RentalResponseDTO toResponseDTO(Rental rental);
-<<<<<<< Updated upstream
-   // @Mapping(target = "id", ignore = true)
-=======
-
->>>>>>> Stashed changes
     Rental toEntity (RentalRequestDTO dto);
 }
