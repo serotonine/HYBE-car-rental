@@ -17,9 +17,15 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public Map<String, String> handleValidationErrors(MethodArgumentNotValidException exception){
         Map<String, String> errors = new HashMap<>();
+        // FIELD ERRORS
         exception.getBindingResult().getFieldErrors().forEach(err ->
                 errors.put(err.getField(), err.getDefaultMessage())
         );
+        // CLASS ERRORS (E.g @EndDateAfterStartDate)
+        exception.getBindingResult().getGlobalErrors().forEach(err ->
+                errors.put(err.getObjectName(), err.getDefaultMessage())
+        );
+
         return errors;
     }
     // Handle @Validated param errors (path variables / request params).

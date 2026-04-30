@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/v1/rentals")
+@RequestMapping("/api/rental")
 @RequiredArgsConstructor
 public class RentalController {
 
@@ -34,9 +34,9 @@ public class RentalController {
         return ResponseEntity.ok(rentalService.getOverdueRentals());
     }
 
-    @PostMapping
-    public ResponseEntity<RentalResponseDTO> createRental(@Valid @RequestBody RentalRequestDTO dto) {
-        return ResponseEntity.status(HttpStatus.CREATED).body(rentalService.createRental(dto));
+    @PostMapping("/add")
+    public ResponseEntity<RentalResponseDTO> addRental(@Valid @RequestBody RentalRequestDTO dto) {
+        return ResponseEntity.status(HttpStatus.CREATED).body(rentalService.addRental(dto));
     }
 
     @PatchMapping("/{id}/activate")

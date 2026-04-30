@@ -10,7 +10,7 @@ import org.mapstruct.MappingConstants;
 @Mapper(componentModel = MappingConstants.ComponentModel.SPRING)
 
 public interface RentalMapper {
+    @Mapping(source = "car.id", target = "carId")
     RentalResponseDTO toResponseDTO(Rental rental);
-   // @Mapping(target = "id", ignore = true)
     Rental toEntity (RentalRequestDTO dto);
 }
