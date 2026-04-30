@@ -2,6 +2,7 @@ package edu.hyf.car_rental.service;
 
 import edu.hyf.car_rental.dto.CarRequestDTO;
 import edu.hyf.car_rental.dto.CarResponseDTO;
+import edu.hyf.car_rental.dto.CarUpdateRequestDTO;
 import edu.hyf.car_rental.exception.CarNotFoundException;
 import edu.hyf.car_rental.mapper.CarMapper;
 import edu.hyf.car_rental.model.Car;
@@ -32,9 +33,20 @@ public class CarService {
        Car car = crepo.findById(id).orElseThrow(()-> new CarNotFoundException(id));
        return mapper.toResponseDTO(car);
     }
+    // Check if car exist (internal use).
+    private Car IsCar(Long id){
+        return crepo.findById(id).orElse(null);
+    }
+
 
     // Rented cars.
     public List<Car> findAllAvailableCars(){
+        return crepo.findByStatus(CarStatus.valueOf("AVAILABLE"));
+    }
+
+    // Search by criteria
+    public List<Car> searchBy(){
+        // TODO
         return crepo.findByStatus(CarStatus.valueOf("AVAILABLE"));
     }
 
@@ -43,14 +55,26 @@ public class CarService {
         crepo.save(mapper.toEntity(carDTO));
         return ResponseEntity.ok(carDTO);
     }
+
+    /* PATCH */
+    public ResponseEntity<?> updateCar(Long id, CarUpdateRequestDTO carDTO){
+        Car car = IsCar(id);
+        if(car == null){return ResponseEntity.notFound().build();}
+        System.out.println("Before mapper: " + car);
+        mapper.updateFromDTO(carDTO,car);
+        System.out.println("After mapper: " + car);
+        crepo.save(car);
+        return ResponseEntity.ok(car);
+
+    }
     /* DELETE */
     public ResponseEntity<?> deleteCar(Long id){
-        Car car = crepo.findById(id).orElse(null);
+        Car car = IsCar(id);
         if(car == null){
             return ResponseEntity.notFound().build();
         }
-        crepo.delete(car);
-        return ResponseEntity.ok().build();
+        crepo.deleteById(id);
+        return ResponseEntity.ok(car);
     }
 
 }
