@@ -1,7 +1,7 @@
 package edu.hyf.car_rental.dto;
 
 import edu.hyf.car_rental.model.CarStatus;
-import jakarta.persistence.UniqueConstraint;
+import edu.hyf.car_rental.validation.EndDateAfterStartDate;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;

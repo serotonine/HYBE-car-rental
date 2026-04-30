@@ -55,21 +55,29 @@ public class RentalService {
 
     /* CREATE RENTAL */
 
-    public RentalResponseDTO createRental(RentalRequestDTO dto) {
+    public RentalResponseDTO addRental(RentalRequestDTO dto) {
 
         Car car = carRepo.findById(dto.getRentalId())
                 .orElseThrow(() ->
                         new RuntimeException("Car not found"));
 
+<<<<<<< Updated upstream
         if (car.getStatus() == CarStatus.RENTED) {
+=======
+       /* if (car.getIsRented()) {
+>>>>>>> Stashed changes
             throw new RuntimeException("Car already rented");
-        }
+        }*/
 
         Rental rental = mapper.toEntity(dto);
 
         rental.setCar(car);
 
+<<<<<<< Updated upstream
         car.setStatus(CarStatus.RENTED);
+=======
+       // car.setIsRented(true);
+>>>>>>> Stashed changes
 
         Rental saved = rentalRepo.save(rental);
 
@@ -84,7 +92,11 @@ public class RentalService {
                 .orElseThrow(() ->
                         new RuntimeException("Rental not found"));
 
+<<<<<<< Updated upstream
         rental.getCar().setStatus(CarStatus.RENTED);
+=======
+        // rental.getCar().setIsRented(true);
+>>>>>>> Stashed changes
 
         Rental updated = rentalRepo.save(rental);
 
@@ -99,7 +111,11 @@ public class RentalService {
                 .orElseThrow(() ->
                         new RuntimeException("Rental not found"));
 
+<<<<<<< Updated upstream
         rental.getCar().setStatus(CarStatus.AVAILABLE);
+=======
+        // rental.getCar().setIsRented(false);
+>>>>>>> Stashed changes
 
         Rental updated = rentalRepo.save(rental);
 
@@ -114,7 +130,11 @@ public class RentalService {
                 .orElseThrow(() ->
                         new RuntimeException("Rental not found"));
 
+<<<<<<< Updated upstream
         rental.getCar().setStatus(CarStatus.AVAILABLE);
+=======
+       // rental.getCar().setIsRented(false);
+>>>>>>> Stashed changes
 
         rentalRepo.delete(rental);
 

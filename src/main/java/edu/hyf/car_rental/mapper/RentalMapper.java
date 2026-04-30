@@ -10,7 +10,12 @@ import org.mapstruct.MappingConstants;
 @Mapper(componentModel = MappingConstants.ComponentModel.SPRING)
 
 public interface RentalMapper {
+    @Mapping(source = "car.id", target = "carId")
     RentalResponseDTO toResponseDTO(Rental rental);
+<<<<<<< Updated upstream
    // @Mapping(target = "id", ignore = true)
+=======
+
+>>>>>>> Stashed changes
     Rental toEntity (RentalRequestDTO dto);
 }
